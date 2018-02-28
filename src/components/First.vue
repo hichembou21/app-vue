@@ -12,19 +12,26 @@
         <input type="number" v-model.number="variable2">
         <p v-if="variable1 && variable2"> {{variable1}} +  {{variable2}} = {{ variable1 + variable2 }} </p>        
         </div>
-        <ul>
-            <li v-for="(item, index) of tab" :key="index" @click="showItem(item)" @dblclick="deleteItem(item)"> 
-               {{index}} {{item}}
-            </li>
-        </ul>
+            <ul>
+                <li v-for="(item, index) of tab" :key="index" @click="showItem(item)" @dblclick="deleteItem(item)"> 
+                    {{index}} {{item}}
+                </li>
+            </ul>
+            <List :tab="tab" v-on:action1="item => showItem(item)" @action2="index => deleteItem(index)"></List>
+
         <!-- <a v-bind:href="variable1">bloup</a> v-bind:href pour associé des variables à des attributs -->
     </section>
   
 </template>
 
 <script>
+import List from './List.vue';
+
 export default {
     name: 'first',
+    components: {
+        List
+    },
     data: function () {
         return {
             variable1: 0,
